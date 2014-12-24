@@ -57,4 +57,7 @@ public class Board implements Observer{
 		// TODO Auto-generated method stub
 		
 	}
+	public Piece[][] getPieces(){
+		return this.pieces;
+	}
 }

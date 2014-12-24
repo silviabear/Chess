@@ -2,25 +2,35 @@ package Component;
 
 import java.awt.Color;
 import java.util.Observable;
-import java.util.Observer;
-
+import Validator.moveValidator;
 public class Piece extends Observable {
-	private Color color;
-	private Board board;
-	private int x;
-	private int y;
+	protected Color color;
+	protected Board board;
+	protected int x;
+	protected int y;
 	public Piece(Color color, Board board){
 		this.color = color;
 		this.board = board;
 	}
-	public boolean move(int dx, int dy){
-		if(!validate(x, y))
+	public boolean move(int x, int y){
+		moveValidator validator = new moveValidator(this, x, y);
+		if(!validator.validateBoundary()) return false;
+		if(!validate(validator))
 			return false;
-		this.x = this.x + dx;
-		this.y = this.y + dy;
+		this.x = x;
+		this.y = y;
 		return true;
 	}
-	public boolean validate(int dx, int dy){
-		return false;
+	protected boolean validate(moveValidator validator){
+		return true;
+	}
+	public int getX(){
+		return this.x;
+	}
+	public int getY(){
+		return this.y;
+	}
+	public Board getBoard(){
+		return this.board;
 	}
 }
