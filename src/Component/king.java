@@ -5,12 +5,12 @@ import java.awt.Color;
 import Validator.moveValidator;
 
 public class king extends Piece{
-	public king(Color color, Board o){
-		super(color, o);
+	public king(Color color, Board o, int x, int y){
+		super(color, o, x, y);
 	}
 	@Override
 	protected boolean validate(moveValidator validator){
-		if(Math.abs(this.x - x) > 1 || Math.abs(this.y - y) > 1)
+		if(Math.abs(validator.getX() - x) > 1 || Math.abs(validator.getY() - y) > 1)
 			return false;
 		return true;
 	}
